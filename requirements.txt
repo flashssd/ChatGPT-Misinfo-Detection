@@ -1,0 +1,6 @@
+pandas
+openpyxl
+fire
+langchain==0.0.316
+openai==0.28.1
+
