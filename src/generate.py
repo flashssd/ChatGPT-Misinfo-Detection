@@ -12,7 +12,7 @@ from langchain.prompts.chat import (
 
 def main(
     output_file: str = "result/coded-results.xlsx",
-    model: str = "gpt-3.5-turbo",
+    model: str = "gpt-3.5-turbo-0613",
     api_key: str | None = None,
     temperature: float = 0.7,
     iteration: int = 30,
