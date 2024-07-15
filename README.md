@@ -29,7 +29,7 @@ pip install -r requirements.txt
 
 Once you have installed all the required packages, you can start running the experiment.
 
-The parameters you can pass in are `api_key`, `output_file`, `model`, `temperature`, and `iteration`.
+The parameters you can pass in are `api_key`, `output_file`, `model`, `temperature`, `iteration`, and `identity`.
 
 - `api_key`: Your OpenAI key. This *must* be provided for the experiment.
 - `output_file`: The name of the output file. Default: *result/coded_results.xlsx*
