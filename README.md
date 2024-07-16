@@ -32,7 +32,6 @@ Once you have installed all the required packages, you can start running the exp
 The parameters you can pass in are `api_key`, `output_file`, `model`, `temperature`, `iteration`, and `identity`.
 
 - `api_key`: Your OpenAI key. This *must* be provided for the experiment.
-- `output_file`: The name of the output file. Default: *result/coded_results.xlsx*
 - `model`: The OpenAI model to be used for the experiment. Default: gpt-3.5-turbo-0613 (note that this model will be deprecated on 2024-09-13, as indicated on https://platform.openai.com/docs/deprecations)
 - `temperature`: The degree of variability in the model's responses, ranging from 0 to 2. Note that a temperature of 0 means no variability at all. If you pass in the same prompt with a temperature of 0, you will always get the same response. Default: *0.7*
 - `iteration`: The number of iterations for the same prompt. Note that if the temperature is set to 0, this will always be reset to 1 regardless of the initial setting. Since there is no variability, it is unnecessary to create more than one iteration. Default: *30*
@@ -40,7 +39,7 @@ The parameters you can pass in are `api_key`, `output_file`, `model`, `temperatu
 
 Except for `api_key`, you can leave the parameters unspecified, and they will be set to their default values. Below is a sample code for the experiment:
 ```
-python src/generate.py --api_key="Your API Key" --iteration=2 --output_file="result/output_file.xlsx"
+python src/generate.py --api_key="Your API Key" --iteration=2 --temperature=1
 ```
 
 If you wish to run with the exact parameter settings as ours (using the default values), run:
