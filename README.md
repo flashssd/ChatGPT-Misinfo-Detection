@@ -29,7 +29,7 @@ pip install -r requirements.txt
 
 Once you have installed all the required packages, you can start running the experiment.
 
-The parameters you can pass in are `api_key`, `output_file`, `model`, `temperature`, `iteration`, and `identity`.
+The parameters you can pass in are `api_key`, `model`, `temperature`, `iteration`, and `identity`.
 
 - `api_key`: Your OpenAI key. This *must* be provided for the experiment.
 - `model`: The OpenAI model to be used for the experiment. Default: gpt-3.5-turbo-0613 (note that this model will be deprecated on 2024-09-13, as indicated on https://platform.openai.com/docs/deprecations)
