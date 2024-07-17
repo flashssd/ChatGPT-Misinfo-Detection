@@ -39,11 +39,11 @@ The parameters you can pass in are `api_key`, `model`, `temperature`, `iteration
 
 Except for `api_key`, you can leave the parameters unspecified, and they will be set to their default values. Below is a sample code for the experiment:
 ```
-python src/generate.py --api_key="Your API Key" --iteration=2 --temperature=1
+python src/main.py --api_key="Your API Key" --iteration=2 --temperature=1
 ```
 
 If you wish to run with the exact parameter settings as ours (using the default values), run:
 ```
-python src/generate.py --api_key="Your API Key"
+python src/main.py --api_key="Your API Key"
 ```
 *Note*: You won't be able to produce the exact same results even if you use the exact same parameters as ours due to the variability introduced by the temperature parameter.
