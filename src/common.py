@@ -1,0 +1,12 @@
+import pandas as pd
+
+
+def excel_write(df, output_file, sheet_name):
+    try:
+        with pd.ExcelWriter(output_file, engine="openpyxl", mode="a") as writer:
+            if sheet_name in writer.book.sheetnames:
+                del writer.book[sheet_name]
+            df.to_excel(writer, sheet_name=sheet_name, index=False)
+    except FileNotFoundError:
+        with pd.ExcelWriter(output_file, engine="openpyxl", mode="w") as writer:
+            df.to_excel(writer, sheet_name=sheet_name, index=False)
