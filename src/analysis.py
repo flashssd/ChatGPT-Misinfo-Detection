@@ -2,7 +2,7 @@ import pandas as pd
 from common import excel_write
 
 
-def analyze(df, iteration, identity):
+def analyze(df: pd.DataFrame, iteration: int, identity: int) -> None:
     df["TotalChoice"] = 0
     for i in range(iteration):
         df["TotalChoice"] += df[f"Choice_{i+1}"]
@@ -45,44 +45,42 @@ def analyze(df, iteration, identity):
             "religion",
             "personality",
         ]
-        for identity in identities:
-            globals()[f"weights_{identity}"] = (
-                df.groupby(["tweet", identity])["TotalChoice"]
+        for ident in identities:
+            globals()[f"weights_{ident}"] = (
+                df.groupby(["tweet", ident])["TotalChoice"]
                 .agg(["std", "mean"])
                 .reset_index()
             )
-            excel_write(
-                globals()[f"weights_{identity}"], output_file, f"weights_{identity}"
-            )
+            excel_write(globals()[f"weights_{ident}"], output_file, f"weights_{ident}")
 
-            globals()[f"weights_{identity}_class"] = (
-                df.groupby(["tweet", "Tweet_classification"])["TotalChoice"]
+            globals()[f"weights_{ident}_class"] = (
+                df.groupby([ident, "Tweet_classification"])["TotalChoice"]
                 .agg(["std", "mean"])
                 .reset_index()
             )
             excel_write(
-                globals()[f"weights_{identity}_class"],
+                globals()[f"weights_{ident}_class"],
                 output_file,
-                f"weights_{identity}_class",
+                f"weights_{ident}_class",
             )
 
         identities_abbrev = ["Edu", "Place", "Political", "Relig", "Personal"]
-        for identity in identities_abbrev:
-            df[f"Total_{identity}"] = 0
+        for ident_abbr in identities_abbrev:
+            df[f"Total_{ident_abbr}"] = 0
             for i in range(iteration):
-                df[f"Total_{identity}"] += df[f"variable_presence_{i+1}"].apply(
-                    lambda x: eval(x)[identity]
+                df[f"Total_{ident_abbr}"] += df[f"variable_presence_{i+1}"].apply(
+                    lambda x: eval(x)[ident_abbr]
                 )
-            df[f"Total_{identity}"] /= iteration
+            df[f"Total_{ident_abbr}"] /= iteration
 
         df = df[
             ["tweet", "Tweet_classification"]
             + identities
-            + [f"Total_{identity}" for identity in identities_abbrev]
+            + [f"Total_{ident_abbr}" for ident_abbr in identities_abbrev]
         ]
         Mention_Class = (
             df.groupby("Tweet_classification")[
-                [f"Total_{identity}" for identity in identities_abbrev]
+                [f"Total_{ident_abbr}" for ident_abbr in identities_abbrev]
             ]
             .mean()
             .reset_index()
@@ -90,14 +88,14 @@ def analyze(df, iteration, identity):
         excel_write(Mention_Class, output_file, "Mention_Class")
 
         for i in range(5):
-            globals()[f"{identities_abbrev[i]}_by_class"] = (
+            globals()[f"{identities_abbrev[i]}_Mention"] = (
                 df.groupby(identities[i])[f"Total_{identities_abbrev[i]}"]
                 .mean()
                 .reset_index()
             )
 
             excel_write(
-                globals()[f"{identities_abbrev[i]}_by_class"],
+                globals()[f"{identities_abbrev[i]}_Mention"],
                 output_file,
-                f"{identities_abbrev[i]}_by_class",
+                f"{identities_abbrev[i]}_Mention",
             )

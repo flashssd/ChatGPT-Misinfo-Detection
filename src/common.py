@@ -1,7 +1,8 @@
 import pandas as pd
 
 
-def excel_write(df, output_file, sheet_name):
+def excel_write(df: pd.DataFrame, output_file: str, sheet_name: str) -> None:
+    # Check if the file exists
     try:
         with pd.ExcelWriter(output_file, engine="openpyxl", mode="a") as writer:
             if sheet_name in writer.book.sheetnames:

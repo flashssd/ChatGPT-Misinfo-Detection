@@ -1,7 +1,38 @@
 from typing import Dict
+import pandas as pd
 
 
-def postprocess(df, identity, iteration):
+def preprocess() -> pd.DataFrame:
+    # Load the data
+    df = pd.read_excel(
+        "data/MTurk_Empathy_Data.xlsx", header=None, sheet_name="Tweet_Text_Coding"
+    )
+
+    # Select the first two rows.
+    texts = df.iloc[0].tolist()[1::5]
+    tweets = pd.DataFrame({"tweet": texts})
+    tweets["Tweet_ID"] = tweets.index.values + 1
+
+    def tweet_class(tweet_id: int) -> str:
+        if tweet_id in [3, 4, 5, 6, 19, 20, 21, 22, 31, 32, 33, 34]:
+            return "Misinformation"
+        elif tweet_id in [7, 8, 23, 24, 35, 36]:
+            return "Correction"
+        elif tweet_id in [1, 2, 9, 18, 29, 30]:
+            return "Neutral"
+        elif tweet_id in [12, 13, 16, 17, 27, 28]:
+            return "Unaligned Sentiment"
+        else:
+            return "Aligned Sentiment"
+
+    tweets["Tweet_classification"] = tweets["Tweet_ID"].apply(tweet_class)
+
+    return tweets
+
+
+def postprocess(
+    df: pd.DataFrame, identity: int, iteration: int, tweets: pd.DataFrame
+) -> pd.DataFrame:
     if identity == 0:
         for i in range(iteration):
             df[f"Choice_{i+1}"] = df[f"response_{i+1}"].apply(
@@ -148,3 +179,6 @@ def postprocess(df, identity, iteration):
             df[f"variable_presence_{i+1}"] = df[f"response_{i+1}"].apply(
                 mention_variable
             )
+
+    df = df.merge(tweets, on="tweet", how="left").drop("Tweet_ID", axis=1)
+    return df
