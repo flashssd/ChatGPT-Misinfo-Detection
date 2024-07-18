@@ -69,7 +69,7 @@ def analyze(df: pd.DataFrame, iteration: int, identity: int) -> None:
             df[f"Total_{ident_abbr}"] = 0
             for i in range(iteration):
                 df[f"Total_{ident_abbr}"] += df[f"variable_presence_{i+1}"].apply(
-                    lambda x: eval(x)[ident_abbr]
+                    lambda x: eval(x)[ident_abbr] if type(x) == str else x[ident_abbr]
                 )
             df[f"Total_{ident_abbr}"] /= iteration
 
