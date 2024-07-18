@@ -1,6 +1,7 @@
 import fire
 import warnings
-from process import preprocess, postprocess
+import pandas as pd
+from process import postprocess
 from generate import generate_responses
 from common import excel_write
 from analysis import analyze
@@ -25,7 +26,7 @@ def main(
         )
         iteration = 1
 
-    tweets = preprocess()
+    tweets = pd.read_excel("data/tweets_36.xlsx")
     df = generate_responses(tweets, identity, iteration, api_key, model, temperature)
     df = postprocess(df, identity, iteration, tweets)
 
@@ -39,6 +40,7 @@ def main(
         sheet_name = "All_Identities"
 
     excel_write(df, output_file, sheet_name)
+
     analyze(df, iteration, identity)
 
 
