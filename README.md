@@ -19,7 +19,7 @@ La Jolla, CA, 92093, USA
 **Email:** [tmackey@ucsd.edu](mailto:tmackey@ucsd.edu)
 
 ## Data Availability
-Our raw dataset is located in the *data* folder of this repository and is named *MTurk_Empathy_Data.xlsx*. The result of our 30-iteration experiment is located in the *result* folder and is named *coded_results.xlsx*. We also provide all the code for our experiments in the *src* folder to facilitate reproduction of our results.
+Our raw dataset is located in the *data* folder of this repository and is named *tweets_36.xlsx*. The result of our 30-iteration experiment is located in the *result* folder and is named *coded_results.xlsx*. We also provide all the code for our experiments in the *src* folder to facilitate reproduction of our results.
 
 ## Result Reproduction
 To reproduce our results, you should have all the required packages installed. We recommend creating a virtual environment before running the following command:
