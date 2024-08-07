@@ -110,7 +110,7 @@ def generate_responses(
         # Generate responses
         output = []
         for tweet in tweets["tweet"]:
-            for edu in ["high school", "undergraduate degree", "graduate"]:
+            for edu in ["high school", "undergraduate", "graduate"]:
                 for place in ["rural", "urban"]:
                     for personality in ["narcissistic", "empathetic"]:
                         for religion in ["religious", "atheistic"]:
