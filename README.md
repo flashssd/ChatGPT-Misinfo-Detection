@@ -17,6 +17,7 @@
 La Jolla, CA, 92093, USA  
 
 **Email:** [tmackey@ucsd.edu](mailto:tmackey@ucsd.edu)
+
 [Our Paper](https://infodemiology.jmir.org/2024/1/e60678/)
 
 ## Data Availability
