@@ -17,6 +17,7 @@
 La Jolla, CA, 92093, USA  
 
 **Email:** [tmackey@ucsd.edu](mailto:tmackey@ucsd.edu)
+[Our Paper](https://infodemiology.jmir.org/2024/1/e60678/)
 
 ## Data Availability
 Our raw dataset is located in the *data* folder of this repository and is named *tweets_36.xlsx*. The result of our 30-iteration experiment is located in the *result* folder and is named *coded_results.xlsx*. We also provide all the code for our experiments in the *src* folder to facilitate reproduction of our results.
